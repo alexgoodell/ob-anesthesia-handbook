@@ -1,0 +1,183 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+$if(colorlinks)$
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+$endif$
+$if(CJKmainfont)$
+\PassOptionsToPackage{space}{xeCJK}
+$endif$
+%
+
+\documentclass[twoside,8pt]{extarticle}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[paperheight=5.5in,paperwidth=3.5in,outer=8mm,inner=5mm, twoside, top=5mm, bottom=8mm, includefoot, footskip=5mm]{geometry} % removed showframe
+\usepackage[document]{ragged2e} % ragged left-align
+\usepackage{xcolor}
+
+
+% -------------------------------------- TightList --------------------------------------
+% used by convertion engine
+\providecommand{\tightlist}{%
+% \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+}
+
+% -------------------------------------- Fonts --------------------------------------
+
+% define custom fonts
+
+\usepackage{fontspec}
+\usepackage[abspath]{currfile}
+
+\defaultfontfeatures[Nova]
+{
+    Path          = \currfileabsdir,
+    UprightFont   = fonts/nova/CopenhagenGroteskNovaRegular.otf,
+    BoldFont      = fonts/nova/CopenhagenGroteskNovaBold.otf,
+    ItalicFont    = fonts/nova/CopenhagenGroteskNovaRegular.otf
+}
+
+\defaultfontfeatures[LinuxLibertine]
+{
+    Path          = \currfileabsdir,
+    UprightFont   = fonts/LinuxLibertine.ttf,
+    BoldFont      = fonts/LinuxLibertineSemiBold.ttf,
+    ItalicFont    = fonts/LinuxLibertineItalic.ttf
+}
+
+\defaultfontfeatures[Futura]
+{
+    Path          = \currfileabsdir,
+    UprightFont   = fonts/futura-bold.ttf
+}
+
+\defaultfontfeatures[Capitals]
+{
+    Path          = \currfileabsdir,
+    UprightFont   = fonts/LinuxLibertineCapitals-Bold-Italic.ttf
+}
+
+\newfontfamily\nova{Nova}
+\newfontfamily\futurabold{Futura}
+\newfontfamily\smallcaps{Capitals}
+
+\newfontfamily\dejavu{DejaVu Sans}
+\newfontfamily\source{Source Code Pro}
+
+
+
+%\setmainfont{LinuxLibertine}
+\setmainfont{Nova}
+
+% custom font commands
+
+\newcommand{\normfont}{%
+    \fontsize{8pt}{8pt}\nova}
+
+\renewcommand{\normalfont}{%
+    \fontsize{8pt}{8pt}\nova}
+
+\newcommand{\mediumish}{%
+    \fontsize{7pt}{7pt}\futurabold}
+\newcommand{\footish}{%
+    \fontsize{5pt}{5pt}\nova}
+\newcommand{\symbols}{%
+    \fontsize{7pt}{8pt}\dejavu}
+
+
+\newcommand{\latinish}[1]{\smallcaps\addfontfeature{LetterSpace=-5}#1\normfont}
+
+
+% -------------------------------------- Titles --------------------------------------
+
+\usepackage[pagestyles]{titlesec}
+
+\titleformat{\section}[block]  % which section command to format
+{\fontsize{11}{13}\nova\filcenter} % format for whole line
+{} % how to show number - \thesubsection
+{0em} % space between number and text
+{\color{black}\textbf} % formatting for just the text
+[\normfont] % formatting for after the text
+
+\titleformat{\subsection} % which section command to format
+{\fontsize{8}{10}\nova} % format for whole line
+{} % how to show number - \thesubsection
+{0em} % space between number and text
+{\color{black}\textbf} % formatting for just the text
+[\normfont] % formatting for after the text
+
+% 
+\titlespacing*{\section}
+{0pt} % left
+{1pt} %{<before-sep>}
+{1pt} %{<after-sep>}
+
+\titlespacing*{\subsection}
+{0pt} % left
+{0pt} %{<before-sep>}
+{0pt} %{<after-sep>}
+
+
+
+
+
+% -------------------------------------- Special chars --------------------------------------
+
+\newcommand\lt{\symbols→ \normfont}
+\newcommand\inc{\symbols↑\normfont}
+\newcommand\dec{\symbols↓\normfont}
+\newcommand\textdelta{\symbols ∆ \normfont}
+\newcommand\therefor{\textbf{\symbols^^^^2234 \normfont}}
+
+
+% -------------------------------------- Footer --------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[LE,RO]{\fontsize{7}{7} \nova \thepage}
+
+
+
+% -------------------------------------- Itemize --------------------------------------
+% https://www.overleaf.com/learn/latex/Lists
+
+\usepackage{enumitem}
+\setlist{nosep} % or \setlist{noitemsep} to leave space around whole list
+% \setlist[legal]{label*=\arabic*.}
+\setlist{label=-, nosep, leftmargin = *, itemindent=0pt, labelwidth=0pt, rightmargin=0pt}
+
+
+
+% ---------- margin box
+
+\usepackage{tikz}
+
+\definecolor{MyBrown}{HTML}{A07F64}
+\definecolor{MyBlue}{HTML}{6894B4}
+
+
+
+\newcommand{\ColorMargin}[3]{% takes color and text
+\ifodd\value{page}% 
+\put (\paperwidth-5mm,#3){%
+\begin{tikzpicture}[baseline=(current bounding box.north)]
+    \node[rotate=270, minimum height= 5mm, minimum width=1.7 cm, fill=#1, text=white] at (0, 0) {\bfseries\mediumish #2};
+\end{tikzpicture}}%
+\else
+\put (0 cm,#3){% relative to upper left corner
+\begin{tikzpicture}[baseline=(current bounding box.north)]
+    \node[rotate=90, minimum height= 5mm, minimum width=1.7 cm, fill=#1, text=white] at (0, 0) {\bfseries\mediumish #2};
+\end{tikzpicture}}%
+\fi
+}
+
+
+% -------------------------------------- Front Matter --------------------------------------
+\title{OB handbook}
+\author{alexgoodell }
+\date{May 2023}
+
+\begin{document}
+
+$body$
+\end{document}

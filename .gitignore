@@ -1,0 +1,15 @@
+# MacOS
+.DS_Store
+*/.DS_Store
+
+# Document folders
+private/
+logs/*.*
+
+# TEX
+*.log
+*.aux
+
+# IDE
+.idea/*
+.idea

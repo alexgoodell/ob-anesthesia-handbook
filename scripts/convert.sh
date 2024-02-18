@@ -1,0 +1,1 @@
+pandoc --from=markdown --output=output.pdf main.md  --template=bare.tex --pdf-engine=lualatex

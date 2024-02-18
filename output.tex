@@ -1,0 +1,599 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+
+\documentclass[twoside,8pt]{extarticle}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[paperheight=5.5in,paperwidth=3.5in,outer=8mm,inner=5mm, twoside, top=5mm, bottom=8mm, includefoot, footskip=5mm]{geometry} % removed showframe
+\usepackage[document]{ragged2e} % ragged left-align
+\usepackage{xcolor}
+
+
+% -------------------------------------- TightList --------------------------------------
+% used by convertion engine
+\providecommand{\tightlist}{%
+% \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+}
+
+% -------------------------------------- Fonts --------------------------------------
+
+% define custom fonts
+
+\usepackage{fontspec}
+\usepackage[abspath]{currfile}
+
+\defaultfontfeatures[Nova]
+{
+    Path          = \currfileabsdir,
+    UprightFont   = fonts/nova/CopenhagenGroteskNovaRegular.otf,
+    BoldFont      = fonts/nova/CopenhagenGroteskNovaBold.otf,
+    ItalicFont    = fonts/nova/CopenhagenGroteskNovaRegular.otf
+}
+
+\defaultfontfeatures[LinuxLibertine]
+{
+    Path          = \currfileabsdir,
+    UprightFont   = fonts/LinuxLibertine.ttf,
+    BoldFont      = fonts/LinuxLibertineSemiBold.ttf,
+    ItalicFont    = fonts/LinuxLibertineItalic.ttf
+}
+
+\defaultfontfeatures[Futura]
+{
+    Path          = \currfileabsdir,
+    UprightFont   = fonts/futura-bold.ttf
+}
+
+\defaultfontfeatures[Capitals]
+{
+    Path          = \currfileabsdir,
+    UprightFont   = fonts/LinuxLibertineCapitals-Bold-Italic.ttf
+}
+
+\newfontfamily\nova{Nova}
+\newfontfamily\futurabold{Futura}
+\newfontfamily\smallcaps{Capitals}
+
+\newfontfamily\dejavu{DejaVu Sans}
+\newfontfamily\source{Source Code Pro}
+
+
+
+%\setmainfont{LinuxLibertine}
+\setmainfont{Nova}
+
+% custom font commands
+
+\newcommand{\normfont}{%
+    \fontsize{8pt}{8pt}\nova}
+
+\renewcommand{\normalfont}{%
+    \fontsize{8pt}{8pt}\nova}
+
+\newcommand{\mediumish}{%
+    \fontsize{7pt}{7pt}\futurabold}
+\newcommand{\footish}{%
+    \fontsize{5pt}{5pt}\nova}
+\newcommand{\symbols}{%
+    \fontsize{7pt}{8pt}\dejavu}
+
+
+\newcommand{\latinish}[1]{\smallcaps\addfontfeature{LetterSpace=-5}#1\normfont}
+
+
+% -------------------------------------- Titles --------------------------------------
+
+\usepackage[pagestyles]{titlesec}
+
+\titleformat{\section}[block]  % which section command to format
+{\fontsize{11}{13}\nova\filcenter} % format for whole line
+{} % how to show number - \thesubsection
+{0em} % space between number and text
+{\color{black}\textbf} % formatting for just the text
+[\normfont] % formatting for after the text
+
+\titleformat{\subsection} % which section command to format
+{\fontsize{8}{10}\nova} % format for whole line
+{} % how to show number - \thesubsection
+{0em} % space between number and text
+{\color{black}\textbf} % formatting for just the text
+[\normfont] % formatting for after the text
+
+% 
+\titlespacing*{\section}
+{0pt} % left
+{1pt} %{<before-sep>}
+{1pt} %{<after-sep>}
+
+\titlespacing*{\subsection}
+{0pt} % left
+{0pt} %{<before-sep>}
+{0pt} %{<after-sep>}
+
+
+
+
+
+% -------------------------------------- Special chars --------------------------------------
+
+\newcommand\lt{\symbols→ \normfont}
+\newcommand\inc{\symbols↑\normfont}
+\newcommand\dec{\symbols↓\normfont}
+\newcommand\textdelta{\symbols ∆ \normfont}
+\newcommand\therefor{\textbf{\symbols^^^^2234 \normfont}}
+
+
+% -------------------------------------- Footer --------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[LE,RO]{\fontsize{7}{7} \nova \thepage}
+
+
+
+% -------------------------------------- Itemize --------------------------------------
+% https://www.overleaf.com/learn/latex/Lists
+
+\usepackage{enumitem}
+\setlist{nosep} % or \setlist{noitemsep} to leave space around whole list
+% \setlist[legal]{label*=\arabic*.}
+\setlist{label=-, nosep, leftmargin = *, itemindent=0pt, labelwidth=0pt, rightmargin=0pt}
+
+
+
+% ---------- margin box
+
+\usepackage{tikz}
+
+\definecolor{MyBrown}{HTML}{A07F64}
+\definecolor{MyBlue}{HTML}{6894B4}
+
+
+
+\newcommand{\ColorMargin}[3]{% takes color and text
+\ifodd\value{page}% 
+\put (\paperwidth-5mm,#3){%
+\begin{tikzpicture}[baseline=(current bounding box.north)]
+    \node[rotate=270, minimum height= 5mm, minimum width=1.7 cm, fill=#1, text=white] at (0, 0) {\bfseries\mediumish #2};
+\end{tikzpicture}}%
+\else
+\put (0 cm,#3){% relative to upper left corner
+\begin{tikzpicture}[baseline=(current bounding box.north)]
+    \node[rotate=90, minimum height= 5mm, minimum width=1.7 cm, fill=#1, text=white] at (0, 0) {\bfseries\mediumish #2};
+\end{tikzpicture}}%
+\fi
+}
+
+
+% -------------------------------------- Front Matter --------------------------------------
+\title{OB handbook}
+\author{alexgoodell }
+\date{May 2023}
+
+\begin{document}
+
+\AddToHook{shipout/background}{\ColorMargin{MyBrown}{Intro}{-1cm}}
+
+\section{Introduction}\label{introduction}
+
+OB is quite a bit different that other MSD rotations you may have
+completed. There is a slightly different culture within the division,
+which can take some adjustment. Overall, the OB Division prioritizes the
+following:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Timeliness}: arrive for shifts, MDR's (multi-disciplinary
+  rounds), and educational events on time. If you are two minutes late,
+  you will be late. Be efficient and do not let your to-do list grow by
+  more than a few items, as the volume is quite unpredictable.
+\item
+  \textbf{Professionalism}: The diversity of patients here requires a
+  flexible and understanding mindset, and respecting each patient will
+  look different. Do your best to meet their needs and show your respect
+  for them as much as you can.
+\item
+  \textbf{Protocols}: The division has done extensive research and/or
+  literature reviews for almost every part of OB anesthesia. Given the
+  homogeneity in cases, protocols have been developed for almost every
+  aspect of the job; this allows additional research to be conducted
+  easily. For the most part, unless you have a strong reason to stray
+  from the protocol, you are expected to follow it.
+\item
+  \textbf{Follow-up}: Every patient who receives an anesthetic is
+  expected to have a follow-up (ideally in-person) documented in their
+  chart. Complications should be followed to resolution.
+\item
+  \textbf{Proactive management of pain}: Effective treatment of labor
+  pain is a hallmark of the division, and inadequate treatment of pain
+  is seen as a urgent problem requiring immediate attention.
+\item
+  \textbf{Triage}: Since the residents are often the first point of
+  contact for nursing and OB, it is important to stay in close
+  communication with your team and delegate tasks. See below.
+\end{itemize}
+
+\section{Triage and Roles}\label{triage-and-roles}
+
+The OB anesthesia team is quite different from other services you may
+have rotated on, which can cause some confusion for the first few days.
+Residents hold the primary phones used to contact the team. The vast
+majority of requests will come from nursing. Unlike other services, the
+OB fellows are not to be seen as your supervisors and/or seniors--their
+participation in day-to-day clinical care is minimal and for the most
+part relegated to high-risk OB cases. The attending should be your first
+call, even for tasks that do not require their supervision; they expect
+to be called to offload your to-do list for any time-sensitive requests.
+For example--if you are called to see two patients for consult, then get
+another call for help with an IV, call or text your attending to help
+with the IV, or direct the caller to them. Having more than a few
+to-do's lined up is problematic when a more urgent task (ie, stat CS)
+suddenly removes you from the floor.
+
+\section{Introduction}\label{introduction-1}
+
+OB is quite a bit different that other MSD rotations you may have
+completed. There is a slightly different culture within the division,
+which can take some adjustment. Overall, the OB Division prioritizes the
+following:
+
+\subsection{Preparation}\label{preparation}
+
+\begin{itemize}
+\tightlist
+\item
+  When you first arrive for your shift and complete signout, you should
+  check the status of the Ors and ensure that the ORs are set up to your
+  liking.
+\item
+  Whenever a case finishes, circle back to set up the appropriate ORs.
+\item
+  Resources can be limited, especially on the weekends and nights. It is
+  best to become comfortable with the environment during the day so that
+  you can respond quickly. This includes knowing where emergency drugs
+  are kept (interlipid, code drugs, nitro spray), how the carts are
+  organized, where OmniCells are.
+\end{itemize}
+
+\subsection{Preparation}\label{preparation-1}
+
+\begin{itemize}
+\tightlist
+\item
+  When you first arrive for your shift and complete signout, you should
+  check the status of the Ors and ensure that the ORs are set up to your
+  liking.
+\item
+  Whenever a case finishes, circle back to set up the appropriate ORs.
+\item
+  Resources can be limited, especially on the weekends and nights. It is
+  best to become comfortable with the environment during the day so that
+  you can respond quickly. This includes knowing where emergency drugs
+  are kept (interlipid, code drugs, nitro spray), how the carts are
+  organized, where OmniCells are.
+\end{itemize}
+
+\section{Triage and Roles}\label{triage-and-roles-1}
+
+The OB anesthesia team is quite different from other services you may
+have rotated on, which can cause some confusion for the first few days.
+Residents hold the primary phones used to contact the team. The vast
+majority of requests will come from nursing. Unlike other services, the
+OB fellows are not to be seen as your supervisors and/or seniors--their
+participation in day-to-day clinical care is minimal and for the most
+part relegated to high-risk OB cases. The attending should be your first
+call, even for tasks that do not require their supervision; they expect
+to be called to offload your to-do list for any time-sensitive requests.
+For example--if you are called to see two patients for consult, then get
+another call for help with an IV, call or text your attending to help
+with the IV, or direct the caller to them. Having more than a few
+to-do's lined up is problematic when a more urgent task (ie, stat CS)
+suddenly removes you from the floor.
+
+\section{Clinical Responsibilities}\label{clinical-responsibilities}
+
+\subsection{Preparation}\label{preparation-2}
+
+\begin{itemize}
+\tightlist
+\item
+  When you first arrive for your shift and complete signout, you should
+  check the status of the Ors and ensure that the ORs are set up to your
+  liking.
+\item
+  Whenever a case finishes, circle back to set up the appropriate ORs.
+\item
+  Resources can be limited, especially on the weekends and nights. It is
+  best to become comfortable with the environment during the day so that
+  you can respond quickly. This includes knowing where emergency drugs
+  are kept (interlipid, code drugs, nitro spray), how the carts are
+  organized, where OmniCells are.
+\end{itemize}
+
+\section{Epidurals/Labor Analgesia}\label{epiduralslabor-analgesia}
+
+\begin{itemize}
+\tightlist
+\item
+  Encounter: You will be called by the nurse to either perform a
+  ``consult'' or place an epidural. A consult is a blank anesthetic
+  record that is made to generate a preop note; these are done to
+  document history/physical for patients even if they are not interested
+  in an epidural. If they require anesthesia, you will be their
+  anesthesiologists so it is important to identify any major problems
+  beforehand. If the patient wants an epidural immediately, the consult
+  encounter is not needed and your can just open a ``labor analgesia''
+  encounter, and use the preop note within that encounter.
+\item
+  Based on their history, decide whether a plain epidural,
+  dural-puncture epidural, or combined spinal-epidural would be best for
+  them.
+\item
+  Discuss the procedure, as well as the risks and benefits with the
+  patient and any family members present.
+\item
+  Obtain your medication and epidural cart, set up the kit and call your
+  attending. If you are sterile, the nurses are happy to call your
+  attending for you.
+\item
+  Target pain score is three or less (five or less during pushing), and
+  tolerable for the patient.
+\item
+  After placing an epidural or CSE, do not leave until the patient has
+  started to feel some relief. If their pain score is above 3 during
+  labor or is intolerable, continue to check in and treat as needed.
+  Round on patients frequently (q2-3 hours) and document in Epic as
+  ``epidural check.''
+\item
+  Apart from bedside rounding, pain scores are documented in epic in the
+  ``Pain summary'' as well as a ``sparkline report'' on the OB home
+  page.
+\item
+  You need to complete a minimum of 5 blocks under ultrasound-guidance
+  and 5 blocks in the lateral position (second rotation only).
+\item
+  Please keep track of your lateral and ultrasound blocks on the Google
+  Sheet Document. Find your tab at the bottom and track your blocks for
+  the month. Your evaluations will be submitted after Gill Abir sees you
+  have completed your sheet. In the logbook please be sensitive to HIPPA
+  when recording patient details - i.e.~just name initials will be fine.
+\end{itemize}
+
+\subsection{Other clinical tasks}\label{other-clinical-tasks}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Quality Improvement}: Be diligent about recording QI events in
+  Epic and modifying QI notes if issues arise later. This will need to
+  be done with every procedure and notable event. This is an essential
+  part of our practice and your learning.
+\item
+  Follow up: Do post-op checks and fill in the Epic `Follow-Up' note. If
+  the post-op checks are delayed due to a busy L+D floor, call the
+  fellows to advise and make a team plan for getting these done.
+\item
+  Charting: Ensure your Epic charting is kept up-to-date, ready and
+  available for your Attending to sign and attest. Be especially careful
+  to enter ``Anesthesia Stop Times'' after deliveries (preferably 15
+  minutes afterwards), and ensure that all essential components of a
+  procedure or follow-up note are completed.
+\end{itemize}
+
+\RemoveFromHook{shipout/background}
+\AddToHook{shipout/background}{\ColorMargin{MyBlue}{Physiology}{-2.8cm}}
+
+\section{Epidurals/Labor Analgesia}\label{epiduralslabor-analgesia-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Encounter: You will be called by the nurse to either perform a
+  ``consult'' or place an epidural. A consult is a blank anesthetic
+  record that is made to generate a preop note; these are done to
+  document history/physical for patients even if they are not interested
+  in an epidural. If they require anesthesia, you will be their
+  anesthesiologists so it is important to identify any major problems
+  beforehand. If the patient wants an epidural immediately, the consult
+  encounter is not needed and your can just open a ``labor analgesia''
+  encounter, and use the preop note within that encounter.
+\item
+  Based on their history, decide whether a plain epidural,
+  dural-puncture epidural, or combined spinal-epidural would be best for
+  them.
+\item
+  Discuss the procedure, as well as the risks and benefits with the
+  patient and any family members present.
+\item
+  Obtain your medication and epidural cart, set up the kit and call your
+  attending. If you are sterile, the nurses are happy to call your
+  attending for you.
+\item
+  Target pain score is three or less (five or less during pushing), and
+  tolerable for the patient.
+\item
+  After placing an epidural or CSE, do not leave until the patient has
+  started to feel some relief. If their pain score is above 3 during
+  labor or is intolerable, continue to check in and treat as needed.
+  Round on patients frequently (q2-3 hours) and document in Epic as
+  ``epidural check.''
+\item
+  Apart from bedside rounding, pain scores are documented in epic in the
+  ``Pain summary'' as well as a ``sparkline report'' on the OB home
+  page.
+\item
+  You need to complete a minimum of 5 blocks under ultrasound-guidance
+  and 5 blocks in the lateral position (second rotation only).
+\item
+  Please keep track of your lateral and ultrasound blocks on the Google
+  Sheet Document. Find your tab at the bottom and track your blocks for
+  the month. Your evaluations will be submitted after Gill Abir sees you
+  have completed your sheet. In the logbook please be sensitive to HIPPA
+  when recording patient details - i.e.~just name initials will be fine.
+\end{itemize}
+
+\subsection{Other clinical tasks}\label{other-clinical-tasks-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Quality Improvement: Be diligent about recording QI events in Epic and
+  modifying QI notes if issues arise later. This will need to be done
+  with every procedure and notable event. This is an essential part of
+  our practice and your learning.
+\item
+  Follow up: Do post-op checks and fill in the Epic `Follow-Up' note. If
+  the post-op checks are delayed due to a busy L+D floor, call the
+  fellows to advise and make a team plan for getting these done.
+\item
+  Charting: Ensure your Epic charting is kept up-to-date, ready and
+  available for your Attending to sign and attest. Be especially careful
+  to enter ``Anesthesia Stop Times'' after deliveries (preferably 15
+  minutes afterwards), and ensure that all essential components of a
+  procedure or follow-up note are completed.
+\end{itemize}
+
+\section{Epidurals/Labor Analgesia}\label{epiduralslabor-analgesia-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Encounter: You will be called by the nurse to either perform a
+  ``consult'' or place an epidural. A consult is a blank anesthetic
+  record that is made to generate a preop note; these are done to
+  document history/physical for patients even if they are not interested
+  in an epidural. If they require anesthesia, you will be their
+  anesthesiologists so it is important to identify any major problems
+  beforehand. If the patient wants an epidural immediately, the consult
+  encounter is not needed and your can just open a ``labor analgesia''
+  encounter, and use the preop note within that encounter.
+\item
+  Based on their history, decide whether a plain epidural,
+  dural-puncture epidural, or combined spinal-epidural would be best for
+  them.
+\item
+  Discuss the procedure, as well as the risks and benefits with the
+  patient and any family members present.
+\item
+  Obtain your medication and epidural cart, set up the kit and call your
+  attending. If you are sterile, the nurses are happy to call your
+  attending for you.
+\item
+  Target pain score is three or less (five or less during pushing), and
+  tolerable for the patient.
+\item
+  After placing an epidural or CSE, do not leave until the patient has
+  started to feel some relief. If their pain score is above 3 during
+  labor or is intolerable, continue to check in and treat as needed.
+  Round on patients frequently (q2-3 hours) and document in Epic as
+  ``epidural check.''
+\item
+  Apart from bedside rounding, pain scores are documented in epic in the
+  ``Pain summary'' as well as a ``sparkline report'' on the OB home
+  page.
+\item
+  You need to complete a minimum of 5 blocks under ultrasound-guidance
+  and 5 blocks in the lateral position (second rotation only).
+\item
+  Please keep track of your lateral and ultrasound blocks on the Google
+  Sheet Document. Find your tab at the bottom and track your blocks for
+  the month. Your evaluations will be submitted after Gill Abir sees you
+  have completed your sheet. In the logbook please be sensitive to HIPPA
+  when recording patient details - i.e.~just name initials will be fine.
+\end{itemize}
+
+\subsection{Other clinical tasks}\label{other-clinical-tasks-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Quality Improvement: Be diligent about recording QI events in Epic and
+  modifying QI notes if issues arise later. This will need to be done
+  with every procedure and notable event. This is an essential part of
+  our practice and your learning.
+\item
+  Follow up: Do post-op checks and fill in the Epic `Follow-Up' note. If
+  the post-op checks are delayed due to a busy L+D floor, call the
+  fellows to advise and make a team plan for getting these done.
+\item
+  Charting: Ensure your Epic charting is kept up-to-date, ready and
+  available for your Attending to sign and attest. Be especially careful
+  to enter ``Anesthesia Stop Times'' after deliveries (preferably 15
+  minutes afterwards), and ensure that all essential components of a
+  procedure or follow-up note are completed.
+\end{itemize}
+
+\section{Epidurals/Labor Analgesia}\label{epiduralslabor-analgesia-3}
+
+\begin{itemize}
+\tightlist
+\item
+  Encounter: You will be called by the nurse to either perform a
+  ``consult'' or place an epidural. A consult is a blank anesthetic
+  record that is made to generate a preop note; these are done to
+  document history/physical for patients even if they are not interested
+  in an epidural. If they require anesthesia, you will be their
+  anesthesiologists so it is important to identify any major problems
+  beforehand. If the patient wants an epidural immediately, the consult
+  encounter is not needed and your can just open a ``labor analgesia''
+  encounter, and use the preop note within that encounter.
+\item
+  Based on their history, decide whether a plain epidural,
+  dural-puncture epidural, or combined spinal-epidural would be best for
+  them.
+\item
+  Discuss the procedure, as well as the risks and benefits with the
+  patient and any family members present.
+\item
+  Obtain your medication and epidural cart, set up the kit and call your
+  attending. If you are sterile, the nurses are happy to call your
+  attending for you.
+\item
+  Target pain score is three or less (five or less during pushing), and
+  tolerable for the patient.
+\item
+  After placing an epidural or CSE, do not leave until the patient has
+  started to feel some relief. If their pain score is above 3 during
+  labor or is intolerable, continue to check in and treat as needed.
+  Round on patients frequently (q2-3 hours) and document in Epic as
+  ``epidural check.''
+\item
+  Apart from bedside rounding, pain scores are documented in epic in the
+  ``Pain summary'' as well as a ``sparkline report'' on the OB home
+  page.
+\item
+  You need to complete a minimum of 5 blocks under ultrasound-guidance
+  and 5 blocks in the lateral position (second rotation only).
+\item
+  Please keep track of your lateral and ultrasound blocks on the Google
+  Sheet Document. Find your tab at the bottom and track your blocks for
+  the month. Your evaluations will be submitted after Gill Abir sees you
+  have completed your sheet. In the logbook please be sensitive to HIPPA
+  when recording patient details - i.e.~just name initials will be fine.
+\end{itemize}
+
+\subsection{Other clinical tasks}\label{other-clinical-tasks-3}
+
+\begin{itemize}
+\tightlist
+\item
+  Quality Improvement: Be diligent about recording QI events in Epic and
+  modifying QI notes if issues arise later. This will need to be done
+  with every procedure and notable event. This is an essential part of
+  our practice and your learning.
+\item
+  Follow up: Do post-op checks and fill in the Epic `Follow-Up' note. If
+  the post-op checks are delayed due to a busy L+D floor, call the
+  fellows to advise and make a team plan for getting these done.
+\item
+  Charting: Ensure your Epic charting is kept up-to-date, ready and
+  available for your Attending to sign and attest. Be especially careful
+  to enter ``Anesthesia Stop Times'' after deliveries (preferably 15
+  minutes afterwards), and ensure that all essential components of a
+  procedure or follow-up note are completed.
+\end{itemize}
+
+\RemoveFromHook{shipout/background}
+\end{document}
