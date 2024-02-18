@@ -2,8 +2,6 @@
 Obstetric Anesthesia: A Resident Guide. Written for anesthesia residents on Stanford Anesthesia OB Rotation.
 
 ![preview of book](teaser/1.png)
-![preview of book](teaser/2.png)
-
 
 # Build
 
@@ -27,3 +25,10 @@ make build
 ```
 
 Which will produce output.text and output.pdf.
+
+# Images from handbook
+
+![preview of book](teaser/2.png)
+![preview of book](teaser/3.png)
+![preview of book](teaser/4.png)
+
