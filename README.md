@@ -1,7 +1,9 @@
 # ob-anesthesia-handbook
-Obstetric Anesthesia: A Resident Guide
+Obstetric Anesthesia: A Resident Guide. Written for anesthesia residents on Stanford Anesthesia OB Rotation.
 
-Written for anesthesia residents on Stanford Anesthesia OB Rotation.
+![preview of book](teaser/1.png)
+![preview of book](teaser/2.png)
+
 
 # Build
 
